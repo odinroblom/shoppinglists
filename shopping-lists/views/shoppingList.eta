@@ -1,0 +1,29 @@
+<h1>The shopping list <%= it.list.name %></h1>
+
+
+<a href="/lists">Shopping lists</a>
+
+<form action="/lists/<%= it.list.id %>/items" method="POST">
+  Name: <input type="text" name="name" />
+  <input type="submit" value="Add a product" />
+</form>
+
+
+<ul>
+  <% it.products.forEach((product) => { %>
+    <li>
+    <a> <%= product.name %></a>
+    <form method="POST" action="/lists/<%= product.shopping_list_id %>/items/<%= product.id %>/collect">
+    <input type="submit" value="Mark collected!" />
+</form>
+    </li>
+  <% }); %>
+</ul>
+
+<ul>
+  <% it.deletedProducts.forEach((obj) => { %>
+    <li>
+    <del><%= obj.name %> </del>
+    </li>
+  <% }); %>
+</ul>
